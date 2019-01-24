@@ -1,0 +1,19 @@
+image: debian:9
+
+services:
+  - name: docker-private.gesis.intra/gesis/dind:2.0
+    alias: docker
+variables: 
+  DOCKER_HOST: "tcp://docker:2375"
+
+stages:
+  - build
+
+docker:
+  stage: build
+  script:
+    - docker build -t docker-private.gesis.intra:443/docker/images/sphinx-doc .
+	- docker login docker-private.gesis.intra:443 --password $DEPLOYMENT_PASSWORD
+  only:
+    - master
+    - stable
