@@ -13,7 +13,7 @@ docker:
   stage: build
   script:
     - docker build -t docker-private.gesis.intra:443/docker/images/sphinx-doc .
-	- docker login docker-private.gesis.intra:443 --password $DEPLOYMENT_PASSWORD
+    - docker login docker-private.gesis.intra:443 --password $DEPLOYMENT_PASSWORD
   only:
     - master
     - stable
