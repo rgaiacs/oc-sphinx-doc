@@ -1,0 +1,12 @@
+apt-utils
+git
+vim
+curl
+atool
+wget
+python3-sphinx
+python3-pip
+netpbm
+poppler-utils
+texlive-latex-recommended
+texlive-lang-german
