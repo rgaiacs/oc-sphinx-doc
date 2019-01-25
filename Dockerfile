@@ -10,5 +10,5 @@ RUN apt update
 COPY apt.list /tmp
 COPY pip.list /tmp
 
-RUN xargs -a /tmp/apt.list apt-get install -y
-RUN pip3 install -r /tmp/pip.list
+RUN grep -v "^#" /tmp/apt.list | xargs apt-get install -y
+RUN grep -v "^#" /tmp/pip.list | pip3 install -r
