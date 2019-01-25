@@ -11,9 +11,9 @@ docker:
   stage: build
   image: docker:18.06.0-ce
   script:
-    - docker build -t docker-private.gesis.intra/docker/images/sphinx-doc .
+    - docker build -t docker-private-snapshots.gesis.intra/docker/images/sphinx-doc:1.0-SNAPSHOT .
     - echo $DEPLOYMENT_PASSWORD | docker login docker-private-snapshots.gesis.intra --username deployment --password-stdin
-    - docker push docker-private.gesis.intra/docker/images/sphinx-doc
+    - docker push docker-private-snapshots.gesis.intra/docker/images/sphinx-doc:1.0-SNAPSHOT
   only:
     - master
     - stable
