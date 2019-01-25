@@ -8,5 +8,5 @@ python3-sphinx
 python3-pip
 netpbm
 poppler-utils
-texlive-latex-recommended
-texlive-lang-german
+#texlive-latex-recommended
+#texlive-lang-german
