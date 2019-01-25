@@ -12,7 +12,7 @@ docker:
   image: docker:18.06.0-ce
   script:
     - docker build -t docker-private.gesis.intra:443/docker/images/sphinx-doc .
-    - echo $DEPLOYMENT_PASSWORD | docker login docker-private.gesis.intra:443 --password-stdin
+    - echo $DEPLOYMENT_PASSWORD | docker login docker-private.gesis.intra:443 --username deployment --password-stdin
     - docker push docker-private.gesis.intra:443/docker/images/sphinx-doc
   only:
     - master
