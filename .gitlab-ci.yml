@@ -13,7 +13,7 @@ docker:
   script:
     - docker build -t docker-private.gesis.intra/docker/images/sphinx-doc .
     - echo $DEPLOYMENT_PASSWORD | docker login docker-private-snapshots.gesis.intra --username deployment --password-stdin
-    - docker push docker-private-snapshots.gesis.intra/docker/images/sphinx-doc
+    - docker push docker-private.gesis.intra/docker/images/sphinx-doc
   only:
     - master
     - stable
