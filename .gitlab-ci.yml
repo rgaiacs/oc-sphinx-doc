@@ -1,5 +1,5 @@
 services:
-  - name: docker-private.gesis.intra/gesis/dind:2.0
+  - name: docker-private.gesis.intra/gesis/dind:3.0
     alias: docker
 variables: 
   DOCKER_HOST: "tcp://docker:2375"
@@ -9,10 +9,9 @@ stages:
 
 docker:
   stage: build
-  image: docker:18.06.0-ce
+  image: docker-private.gesis.intra/gesis/dc:3.0
   script:
     - docker build -t docker-private-snapshots.gesis.intra/docker/images/sphinx-doc:1.0-SNAPSHOT .
-    - echo $DEPLOYMENT_PASSWORD | docker login docker-private-snapshots.gesis.intra --username deployment --password-stdin
     - docker push docker-private-snapshots.gesis.intra/docker/images/sphinx-doc:1.0-SNAPSHOT
   only:
     - master
