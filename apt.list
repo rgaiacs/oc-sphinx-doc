@@ -8,5 +8,7 @@ python3-sphinx
 python3-pip
 netpbm
 poppler-utils
+apache2
+supervisor
 #texlive-latex-recommended
 #texlive-lang-german
