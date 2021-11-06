@@ -1,3 +1,7 @@
+variables:
+  IMAGE_NAME: "docker/images/sphinx-doc"
+  IMAGE_VERSION: "1.0-SNAPSHOT"
+
 stages:
   - package
 
@@ -8,8 +12,7 @@ Package Docker image:
     - name:  docker-private.gesis.intra/gesis/dind:5.3
       alias: docker
   script:
-    - docker build -t docker-private-snapshots.gesis.intra/docker/images/sphinx-doc:1.0-SNAPSHOT .
-    - docker push docker-private-snapshots.gesis.intra/docker/images/sphinx-doc:1.0-SNAPSHOT
+    - ./docker/build-and-push.sh
   only:
     - master
     - stable
