@@ -1,15 +1,12 @@
-services:
-  - name: docker-private.gesis.intra/gesis/dind:3.0
-    alias: docker
-variables: 
-  DOCKER_HOST: "tcp://docker:2375"
-
 stages:
-  - build
+  - package
 
-docker:
-  stage: build
-  image: docker-private.gesis.intra/gesis/dc:3.0
+Package Docker image:
+  stage: package
+  image: docker-private.gesis.intra/gesis/dc:5.3
+  services:
+    - name:  docker-private.gesis.intra/gesis/dind:5.3
+      alias: docker
   script:
     - docker build -t docker-private-snapshots.gesis.intra/docker/images/sphinx-doc:1.0-SNAPSHOT .
     - docker push docker-private-snapshots.gesis.intra/docker/images/sphinx-doc:1.0-SNAPSHOT
