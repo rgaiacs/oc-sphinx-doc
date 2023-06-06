@@ -2,4 +2,6 @@
 #sphinxcontrib-texfigure
 sphinxcontrib.programoutput
 sphinx-rtd-theme
+sphinx_md_theme
 sphinx-tabs
+myst-parser

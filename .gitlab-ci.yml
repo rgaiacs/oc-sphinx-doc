@@ -1,6 +1,6 @@
 variables:
   IMAGE_NAME: "docker/images/sphinx-doc"
-  IMAGE_VERSION: "1.1-SNAPSHOT"
+  IMAGE_VERSION: "1.1-7-SNAPSHOT"
 
 stages:
   - package
@@ -16,3 +16,4 @@ Package Docker image:
   only:
     - master
     - stable
+    - 7-support-markdown-as-markup-language
