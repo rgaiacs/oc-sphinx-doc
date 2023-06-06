@@ -1,19 +1,40 @@
 variables:
-  IMAGE_NAME: "docker/images/sphinx-doc"
-  IMAGE_VERSION: "1.1-7-SNAPSHOT"
+  VERSION: "1.1-SNAPSHOT"
+  DOCKER_IMAGE_NAME: "docker/images/sphinx-doc"
 
 stages:
   - package
+  - secure
 
-Package Docker image:
+Deploy Docker image:
   stage: package
-  image: docker-private.gesis.intra/gesis/dc:5.3
+  image: docker-private.gesis.intra/gesis/dc:5.10
   services:
-    - name:  docker-private.gesis.intra/gesis/dind:5.3
+    - name:  docker-private.gesis.intra/gesis/dind:5.6
       alias: docker
   script:
-    - ./docker/build-and-push.sh
-  only:
-    - master
-    - stable
-    - 7-support-markdown-as-markup-language
+    - docker-ci deploy-image
+
+Scan Docker image for vulnerabilities:
+  stage: secure
+  image: docker-private.gesis.intra/gesis/dc:5.10
+  services:
+    - name:  docker-private.gesis.intra/gesis/dind:5.6
+      alias: docker
+  script:
+    - docker-ci scan-image
+  artifacts:
+    paths:
+      - grype-report.html
+
+Generate bill of materials of Docker image:
+  stage: secure
+  image: docker-private.gesis.intra/gesis/dc:5.10
+  services:
+    - name:  docker-private.gesis.intra/gesis/dind:5.6
+      alias: docker
+  script:
+    - docker-ci generate-bom
+  artifacts:
+    paths:
+      - syft-report.txt
