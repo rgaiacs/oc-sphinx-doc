@@ -1,7 +1,8 @@
 #sphinxcontrib-tikz   
 #sphinxcontrib-texfigure
-sphinxcontrib.programoutput
-sphinx-rtd-theme
 sphinx_md_theme
+sphinx-rtd-theme
 sphinx-tabs
+sphinxcontrib-mermaid
+sphinxcontrib.programoutput
 myst-parser
