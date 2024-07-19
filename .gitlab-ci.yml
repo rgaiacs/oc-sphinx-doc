@@ -1,6 +1,6 @@
 variables:
   VERSION: "1.2-SNAPSHOT"
-  DOCKER_IMAGE_NAME: "docker/images/sphinx-doc"
+  DOCKER_IMAGE_NAME: "rse/docker/images/sphinx-doc"
 
 stages:
   - package
