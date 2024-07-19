@@ -14,7 +14,7 @@ services:
       - "8000"
     ports:
       - "8000:8000"
-    command: bash -c "cd /mnt/docs && sphinx-autobuild --host 0.0.0.0 source build"
+    command: sphinx-autobuild --host 0.0.0.0 /mnt/docs/source /mnt/docs/build
 
 volumes:
   sphinx-doc-build:
