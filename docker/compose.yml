@@ -2,6 +2,7 @@ services:
   sphinx-doc:
     build:
       context: docker
+      target: sphinx-autobuild
     volumes:
       - type: bind
         source: demo
