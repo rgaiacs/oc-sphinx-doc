@@ -9,4 +9,4 @@ RUN apt update -y
 COPY apt.list /tmp
 COPY pip.list /tmp
 RUN grep -v "^#" /tmp/apt.list | xargs apt-get install -y
-RUN grep -v "^#" /tmp/pip.list | pip3 install -r /dev/stdin
+RUN pipx install sphinx && grep -v "^#" /tmp/pip.list | xargs pipx inject sphinx
