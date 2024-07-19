@@ -2,3 +2,18 @@ services:
   sphinx-doc:
     build:
       context: docker
+    volumes:
+      - type: bind
+        source: demo
+        target: /mnt/docs
+        read_only: true
+      # Create volume to avoid the container overwrite demo/build
+      - sphinx-doc-build:/mnt/docs/build
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    command: bash -c "cd /mnt/docs && sphinx-autobuild --host 0.0.0.0 source build"
+
+volumes:
+  sphinx-doc-build:
