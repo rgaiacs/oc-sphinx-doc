@@ -4,8 +4,6 @@ git
 curl
 atool
 wget
-python3-sphinx
-python3-pip
 pipx
 netpbm
 poppler-utils
