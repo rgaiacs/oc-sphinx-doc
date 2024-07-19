@@ -5,5 +5,6 @@ sphinx-copybutton
 sphinx-rtd-theme
 sphinx-tabs
 sphinxcontrib-mermaid
+sphinxcontrib.openapi
 sphinxcontrib.programoutput
 myst-parser
