@@ -1,6 +1,7 @@
 #sphinxcontrib-tikz   
 #sphinxcontrib-texfigure
 sphinx_md_theme
+sphinx-autobuild
 sphinx-rtd-theme
 sphinx-tabs
 sphinxcontrib-mermaid
