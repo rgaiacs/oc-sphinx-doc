@@ -10,7 +10,7 @@ spec:
 
 build sphinx website - $[[ inputs.dir ]]:
     stage: $[[ inputs.stage ]]
-    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.1.4
+    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.2.0
     script:
         - cd $[[ inputs.dir ]]
         - make html
