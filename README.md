@@ -16,6 +16,20 @@ include:
 
 to your `.gitlab-ci.yml`.
 
+To have the documentation published using GitLab Pages, add
+
+```
+pages:
+  stage: deploy
+  script:
+    - mv demo/build/html public
+  artifacts:
+    paths:
+      - public
+```
+
+to your `.gitlab-ci.yml`.
+
 ## Local Usage
 
 ### Docker Compose
