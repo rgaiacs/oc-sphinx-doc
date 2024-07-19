@@ -3,6 +3,7 @@
 FROM debian:12.6 as sphinx-doc
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="$PATH:/root/.local/bin"
 
 RUN echo "Europe/Berlin" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 RUN apt update -y
