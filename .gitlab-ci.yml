@@ -1,5 +1,5 @@
 include:
-  - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/my-component@$CI_COMMIT_SHA
+  - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/sphinx-doc@$CI_COMMIT_SHA
     inputs:
       stage: test-component
       dir: demo
