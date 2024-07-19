@@ -9,7 +9,7 @@ python3-pip
 pipx
 netpbm
 poppler-utils
-apache2
-supervisor
+#apache2
+#supervisor
 #texlive-latex-recommended
 #texlive-lang-german
