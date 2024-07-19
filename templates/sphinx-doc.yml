@@ -1,0 +1,19 @@
+spec:
+  inputs:
+    stage:
+      default: build
+      description: 'Build the documentation'
+    dir:
+      default: docs
+      description: 'Relative directory where the Sphinx project is located'
+---
+
+build sphinx website - $[[ inputs.dir ]]:
+    stage: $[[ inputs.stage ]]
+    script:
+        - cd $[[ inputs.dir ]]
+        - make html
+    artifacts:
+        paths:
+        - $[[ input.dir ]]/build/html
+        - $[[ input.dir ]]/_build/html
