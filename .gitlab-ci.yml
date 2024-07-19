@@ -1,5 +1,5 @@
 variables:
-  VERSION: "1.2-SNAPSHOT"
+  VERSION: "2.0-SNAPSHOT"
   DOCKER_IMAGE_NAME: "rse/docker/images/sphinx-doc"
 
 stages:
