@@ -16,5 +16,5 @@ build sphinx website - $[[ inputs.dir ]]:
         - make html
     artifacts:
         paths:
-        - $[[ input.dir ]]/build/html
-        - $[[ input.dir ]]/_build/html
+        - $[[ inputs.dir ]]/build/html
+        - $[[ inputs.dir ]]/_build/html
