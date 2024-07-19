@@ -8,7 +8,7 @@ Add
 
 ```
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@$2.1.4
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.1.4
     inputs:
       stage: build
       dir: docs
