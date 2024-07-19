@@ -2,14 +2,15 @@ spec:
   inputs:
     stage:
       default: build
-      description: 'Build the documentation'
+      description: Build the documentation
     dir:
       default: docs
-      description: 'Relative directory where the Sphinx project is located'
+      description: Relative directory where the Sphinx project is located
 ---
 
 build sphinx website - $[[ inputs.dir ]]:
     stage: $[[ inputs.stage ]]
+    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.1.0
     script:
         - cd $[[ inputs.dir ]]
         - make html

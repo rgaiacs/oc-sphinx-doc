@@ -1,11 +1,36 @@
+include:
+  - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/my-component@$CI_COMMIT_SHA
+    inputs:
+      stage: test-component
+      dir: demo
+
 variables:
-  VERSION: "2.0-SNAPSHOT"
-  DOCKER_IMAGE_NAME: "rse/docker/images/sphinx-doc"
+  VERSION_NUMBER:
+    value: "2.1.0"
+    description: Version number used for the Docker image
+  DOCKER_IMAGE_NAME:
+    value: "rse/docker/images/sphinx-doc"
+    description: The Docker image name
 
 stages:
   - package
   - secure
-  - release
+  - test-component
+  - release-component
+  - release-pages
+
+Prepare environment variables:
+  stage: .pre
+  script:
+    - >
+      if [ -z "$CI_COMMIT_TAG" ]; then
+        echo "VERSION=${VERSION_NUMBER}-SNAPSHOT" > .env
+      else
+        echo "VERSION=${VERSION_NUMBER}" > .env
+      fi
+  artifacts:
+    reports:
+      dotenv: .env
 
 Deploy Docker image:
   stage: package
@@ -47,7 +72,7 @@ Generate bill of materials of Docker image:
     - stable
 
 Create release:
-  stage: release
+  stage: release-component
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   script: echo "Creating release $CI_COMMIT_TAG"
   rules:
@@ -55,3 +80,14 @@ Create release:
   release:
     tag_name: $CI_COMMIT_TAG
     description: "Release $CI_COMMIT_TAG of components in $CI_PROJECT_PATH"
+
+pages:
+  stage: release-pages
+  script:
+    - mv demo/build/html public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_TAG
+  environment: production
