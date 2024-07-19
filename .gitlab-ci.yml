@@ -46,8 +46,6 @@ Deploy Docker image:
       alias: docker
   script:
     - docker-ci deploy-image
-  except:
-    - stable
 
 Scan Docker image for vulnerabilities:
   stage: secure
@@ -66,8 +64,6 @@ Scan Docker image for vulnerabilities:
   artifacts:
     paths:
       - grype-report.html
-  except:
-    - stable
 
 Generate bill of materials of Docker image:
   stage: secure
@@ -86,8 +82,6 @@ Generate bill of materials of Docker image:
   artifacts:
     paths:
       - syft-report.txt
-  except:
-    - stable
 
 Create release:
   stage: release-component
