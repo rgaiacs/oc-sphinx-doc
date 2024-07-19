@@ -34,6 +34,12 @@ Prepare environment variables:
 
 Deploy Docker image:
   stage: package
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_MERGE_REQUEST_ID
+      changes:
+        - docker
   image: docker-private.gesis.intra/gesis/dc:5.10
   services:
     - name:  docker-private.gesis.intra/gesis/dind:5.6
@@ -46,6 +52,12 @@ Deploy Docker image:
 Scan Docker image for vulnerabilities:
   stage: secure
   image: docker-private.gesis.intra/gesis/dc:5.10
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_MERGE_REQUEST_ID
+      changes:
+        - docker
   services:
     - name:  docker-private.gesis.intra/gesis/dind:5.6
       alias: docker
@@ -59,6 +71,12 @@ Scan Docker image for vulnerabilities:
 
 Generate bill of materials of Docker image:
   stage: secure
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_MERGE_REQUEST_ID
+      changes:
+        - docker
   image: docker-private.gesis.intra/gesis/dc:5.10
   services:
     - name:  docker-private.gesis.intra/gesis/dind:5.6
@@ -90,4 +108,5 @@ pages:
       - public
   rules:
     - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == "master"
   environment: production
