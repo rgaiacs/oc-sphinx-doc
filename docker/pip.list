@@ -2,6 +2,7 @@
 #sphinxcontrib-texfigure
 sphinx_md_theme
 sphinx-autobuild
+sphinx-copybutton
 sphinx-rtd-theme
 sphinx-tabs
 sphinxcontrib-mermaid
