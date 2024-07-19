@@ -1,6 +1,6 @@
 apt-utils
 git
-vim
+#vim
 curl
 atool
 wget
