@@ -8,7 +8,7 @@ Add
 
 ```
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.2.0
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.0
     inputs:
       stage: build
       dir: docs
@@ -39,7 +39,7 @@ Add
 ```
 services:
   sphinx-doc:
-    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.2.0
+    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.0
     volumes:
       - type: bind
         source: docs
@@ -68,6 +68,6 @@ cd /path/to/your/sphinx-doc-project
 ```bash
 docker run -ti --rm \
   -v $PWD:/mnt \
-  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.2.0 \
+  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.0 \
   bash -c "cd /mnt && make html"
 ```
