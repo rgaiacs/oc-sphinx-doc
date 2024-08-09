@@ -8,7 +8,7 @@ Add
 
 ```yaml
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.0
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.1
     inputs:
       stage: build
       dir: docs
@@ -39,7 +39,7 @@ For example,
 
 ```yaml
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.0
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.1
     inputs:
       stage: build
       dir: docs
@@ -68,7 +68,7 @@ Add
 ```
 services:
   sphinx-doc:
-    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.0
+    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.1
     volumes:
       - type: bind
         source: docs
@@ -97,6 +97,6 @@ cd /path/to/your/sphinx-doc-project
 ```bash
 docker run -ti --rm \
   -v $PWD:/mnt \
-  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.0 \
+  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.1 \
   bash -c "cd /mnt && make html"
 ```
