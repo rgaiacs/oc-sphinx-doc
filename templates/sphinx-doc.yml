@@ -2,19 +2,37 @@ spec:
   inputs:
     stage:
       default: build
-      description: Build the documentation
+      description: Build the documentation.
     dir:
       default: docs
-      description: Relative directory where the Sphinx project is located
+      description: Relative directory where the Sphinx project is located.
+    job-name:
+      default: build sphinx website
+      description: Name of the job. This can be used for artifacts dependencies.
 ---
 
-build sphinx website - $[[ inputs.dir ]]:
+$[[ inputs.job-name ]]:
     stage: $[[ inputs.stage ]]
-    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.0
+    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.1
     script:
         - cd $[[ inputs.dir ]]
         - make html
+        - |
+          if [ -d _build ]
+          then
+              echo Found _build
+              mv _build/html ../public
+          else
+              echo Could NOT locate _build
+          fi
+        - |
+          if [ -d build ]
+          then
+              echo Found build
+              mv build/html ../public
+          else
+              echo Could NOT locate build
+          fi
     artifacts:
         paths:
-        - $[[ inputs.dir ]]/build/html
-        - $[[ inputs.dir ]]/_build/html
+        - public

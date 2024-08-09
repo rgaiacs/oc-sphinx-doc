@@ -6,7 +6,7 @@ include:
 
 variables:
   VERSION_NUMBER:
-    value: "2.3.0"
+    value: "2.3.1"
     description: Version number used for the Docker image
   DOCKER_IMAGE_NAME:
     value: "rse/docker/images/sphinx-doc"
@@ -17,7 +17,6 @@ stages:
   - secure
   - test-component
   - release-component
-  - release-pages
 
 Prepare environment variables:
   stage: .pre
@@ -100,9 +99,11 @@ Create release:
     description: "Release $CI_COMMIT_TAG of components in $CI_PROJECT_PATH"
 
 pages:
-  stage: release-pages
+  stage: .post
+  dependencies:
+    - build sphinx website
   script:
-    - mv demo/build/html public
+    - Publish documentation to GitLab Pages
   artifacts:
     paths:
       - public

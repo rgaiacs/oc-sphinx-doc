@@ -6,9 +6,9 @@ GitLab CI/CD Component to build documentation website with Sphinx.
 
 Add
 
-```
+```yaml
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.0
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.1
     inputs:
       stage: build
       dir: docs
@@ -18,17 +18,46 @@ to your `.gitlab-ci.yml`.
 
 To have the documentation published using GitLab Pages, add
 
-```
+```yaml
 pages:
-  stage: deploy
+  stage: .post
+  dependencies:
+    - build sphinx website
   script:
-    - mv demo/build/html public
+    - Publish documentation to GitLab Pages
   artifacts:
     paths:
       - public
 ```
 
 to your `.gitlab-ci.yml`.
+
+### Conditional
+
+It is possible to define conditions to when the component will be executed.
+For example,
+
+```yaml
+include:
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.1
+    inputs:
+      stage: build
+      dir: docs
+    rules:
+      - if: $CI_COMMIT_BRANCH == "master"
+
+pages:
+  stage: .post
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+  dependencies:
+    - build sphinx website
+  script:
+    - Publish documentation to GitLab Pages
+  artifacts:
+    paths:
+      - public
+```
 
 ## Local Usage
 
@@ -39,7 +68,7 @@ Add
 ```
 services:
   sphinx-doc:
-    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.0
+    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.1
     volumes:
       - type: bind
         source: docs
@@ -68,6 +97,6 @@ cd /path/to/your/sphinx-doc-project
 ```bash
 docker run -ti --rm \
   -v $PWD:/mnt \
-  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.0 \
+  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.1 \
   bash -c "cd /mnt && make html"
 ```
