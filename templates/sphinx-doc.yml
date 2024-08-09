@@ -14,7 +14,32 @@ build sphinx website - $[[ inputs.dir ]]:
     script:
         - cd $[[ inputs.dir ]]
         - make html
+        - |
+          if [ -d _build ]
+          then
+              echo Found _build
+              mv _build/html ../public
+          else
+              echo Could NOT locate _build
+          fi
+        - |
+          if [ -d build ]
+          then
+              echo Found build
+              mv build/html ../public
+          else
+              echo Could NOT locate build
+          fi
     artifacts:
         paths:
-        - $[[ inputs.dir ]]/build/html
-        - $[[ inputs.dir ]]/_build/html
+        - public
+
+pages:
+  stage: .post
+  dependencies:
+    - build sphinx website - $[[ inputs.dir ]]
+  script:
+    - echo Deploying documentation to GitLab Pages
+  artifacts:
+    paths:
+      - public
