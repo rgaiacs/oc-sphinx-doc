@@ -2,13 +2,16 @@ spec:
   inputs:
     stage:
       default: build
-      description: Build the documentation
+      description: Build the documentation.
     dir:
       default: docs
-      description: Relative directory where the Sphinx project is located
+      description: Relative directory where the Sphinx project is located.
+    job-name:
+      default: build sphinx website
+      description: Name of the job. This can be used for artifacts dependencies.
 ---
 
-build sphinx website - $[[ inputs.dir ]]:
+$[[ inputs.job-name ]]:
     stage: $[[ inputs.stage ]]
     image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.0
     script:
@@ -33,13 +36,3 @@ build sphinx website - $[[ inputs.dir ]]:
     artifacts:
         paths:
         - public
-
-pages:
-  stage: .post
-  dependencies:
-    - build sphinx website - $[[ inputs.dir ]]
-  script:
-    - echo Deploying documentation to GitLab Pages
-  artifacts:
-    paths:
-      - public
