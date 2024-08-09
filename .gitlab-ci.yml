@@ -103,7 +103,7 @@ pages:
   dependencies:
     - build sphinx website
   script:
-    - Publish documentation to GitLab Pages
+    - echo Publish documentation to GitLab Pages
   artifacts:
     paths:
       - public
