@@ -8,7 +8,7 @@ Add
 
 ```yaml
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.1
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.4.0
     inputs:
       stage: build
       dir: docs
@@ -38,7 +38,7 @@ Use of [Sphinx built-in extensions `autodoc`](https://www.sphinx-doc.org/en/mast
 
 ```yaml
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.1
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.4.0
     inputs:
       stage: build
       dir: docs
