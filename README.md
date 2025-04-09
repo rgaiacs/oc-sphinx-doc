@@ -32,6 +32,19 @@ pages:
 
 to your `.gitlab-ci.yml`.
 
+### `autodoc`
+
+Use of [Sphinx built-in extensions `autodoc`](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html) is supported.
+
+```yaml
+include:
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.3.1
+    inputs:
+      stage: build
+      dir: docs
+      install_repo: true
+```
+
 ### Conditional
 
 It is possible to define conditions to when the component will be executed.
