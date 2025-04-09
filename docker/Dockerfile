@@ -1,4 +1,4 @@
-FROM alpine:3.20
+FROM alpine:3.21.3
 
 ENV PATH="$PATH:/root/.local/bin"
 
