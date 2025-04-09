@@ -3,18 +3,30 @@ spec:
     stage:
       default: build
       description: Build the documentation.
-    dir:
-      default: docs
-      description: Relative directory where the Sphinx project is located.
     job-name:
       default: build sphinx website
       description: Name of the job. This can be used for artifacts dependencies.
+    dir:
+      default: docs
+      description: Relative directory where the Sphinx project is located.
+    install_repo:
+      type: boolean
+      default: false
+      description: Install current repo before build documentation. Required when using autodoc.
 ---
 
 $[[ inputs.job-name ]]:
     stage: $[[ inputs.stage ]]
     image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.3.1
     script:
+        - |
+          if [ "$[[ inputs.dir ]]" = "true" ]
+          then
+            pipx \
+            inject \
+            sphinx \
+            .
+          fi
         - cd $[[ inputs.dir ]]
         - make html
         - |
