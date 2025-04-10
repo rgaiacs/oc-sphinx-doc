@@ -20,7 +20,7 @@ $[[ inputs.job-name ]]:
     image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.4.0
     script:
         - |
-          if [ "$[[ inputs.dir ]]" = "true" ]
+          if [ "$[[ inputs.install_repo ]]" = "true" ]
           then
             pipx \
             inject \
