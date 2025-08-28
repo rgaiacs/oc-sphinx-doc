@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'Demo'
-copyright = '2024, Raniere Silva'
-author = 'Raniere Silva'
+copyright = '2024, Raniere Gaia Costa da Silva'
+author = 'Raniere Gaia Costa da Silva'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
