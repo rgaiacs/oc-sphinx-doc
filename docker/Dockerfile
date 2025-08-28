@@ -1,10 +1,8 @@
-FROM alpine:3.21.3
+FROM python:3.13.7-alpine3.22
 
 ENV PATH="$PATH:/root/.local/bin"
-
-RUN echo "Europe/Berlin" > /etc/timezone
 
 COPY apk.list /tmp
 COPY pip.list /tmp
 RUN grep -v "^#" /tmp/apk.list | xargs apk add --no-cache
-RUN pipx install sphinx==8.2.3 && pipx inject --include-apps sphinx sphinx-autobuild && grep -v "^#" /tmp/pip.list | xargs pipx inject sphinx
+RUN grep -v "^#" /tmp/pip.list | xargs python -m pip install --no-cache-dir

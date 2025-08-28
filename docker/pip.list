@@ -1,11 +1,14 @@
-#sphinxcontrib-tikz   
-#sphinxcontrib-texfigure
+gesis-sphinx-theme==1.0.1 --index-url https://git.gesis.org/api/v4/projects/3316/packages/pypi/simple
+myst-parser==4.0.1
+sphinx==8.2.3
 sphinx_md_theme==0.1a4
+sphinx-autobuild
 sphinx-copybutton==0.5.2
 sphinx-rtd-theme==3.0.2
 sphinx-tabs==3.4.7
 sphinxcontrib-mermaid==1.0.0
+#sphinxcontrib-texfigure
+#sphinxcontrib-tikz   
 sphinxcontrib-video==0.4.1
 sphinxcontrib.openapi==0.8.4
 sphinxcontrib.programoutput==0.18
-myst-parser==4.0.1
