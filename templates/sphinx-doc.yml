@@ -29,6 +29,7 @@ $[[ inputs.job-name ]]:
           fi
         - cd $[[ inputs.dir ]]
         - make html
+        - find . -type f -name "*.js.map" -exec rm {} \;
         - |
           if [ -d _build ]
           then
