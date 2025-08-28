@@ -25,3 +25,5 @@ exclude_patterns = []
 
 html_theme = "gesis"
 html_static_path = ['_static']
+html_logo = "img/sphinx-doc-logo.png"  #  its width should not exceed 200 pixels
+html_favicon = "img/sphinx-doc-favicon.png"  # it should be a 16-by-16 pixel icon
