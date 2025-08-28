@@ -8,7 +8,7 @@ Add
 
 ```yaml
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.4.0
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.5.0
     inputs:
       stage: build
       dir: docs
@@ -38,7 +38,7 @@ Use of [Sphinx built-in extensions `autodoc`](https://www.sphinx-doc.org/en/mast
 
 ```yaml
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.4.1
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.5.0
     inputs:
       stage: build
       dir: docs
@@ -52,7 +52,7 @@ For example,
 
 ```yaml
 include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.4.1
+  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.5.0
     inputs:
       stage: build
       dir: docs
@@ -81,19 +81,19 @@ Add
 ```
 services:
   sphinx-doc:
-    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.4.1
+    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.5.0
     volumes:
       - type: bind
         source: docs
         target: /mnt/docs
         read_only: true
       # Create volume to avoid the container overwrite build
-      - sphinx-doc-build:/mnt/docs/build
+      - sphinx-doc-build:/mnt/html
     expose:
       - "8000"
     ports:
       - "8000:8000"
-    command: sphinx-autobuild --host 0.0.0.0 /mnt/docs/source /mnt/docs/build
+    command: sphinx-autobuild --host 0.0.0.0 /mnt/docs/source /mnt/html
 
 volumes:
   sphinx-doc-build:
@@ -110,6 +110,6 @@ cd /path/to/your/sphinx-doc-project
 ```bash
 docker run -ti --rm \
   -v $PWD:/mnt \
-  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.4.1 \
+  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.5.0 \
   bash -c "cd /mnt && make html"
 ```
