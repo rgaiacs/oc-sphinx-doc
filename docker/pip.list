@@ -1,4 +1,4 @@
-gesis-sphinx-theme==1.0.1 --index-url https://git.gesis.org/api/v4/projects/3316/packages/pypi/simple
+gesis-sphinx-theme==1.1.2 --index-url https://git.gesis.org/api/v4/projects/3316/packages/pypi/simple
 myst-parser==4.0.1
 sphinx==8.2.3
 sphinx_md_theme==0.1a4
