@@ -22,10 +22,7 @@ $[[ inputs.job-name ]]:
         - |
           if [ "$[[ inputs.install_repo ]]" = "true" ]
           then
-            pipx \
-            inject \
-            sphinx \
-            .
+            python -m pip install .
           fi
         - cd $[[ inputs.dir ]]
         - make html
