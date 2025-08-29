@@ -30,6 +30,7 @@ $[[ inputs.job-name ]]:
         - cd $[[ inputs.dir ]]
         - make html
         - find . -type f -name "*.js.map" -exec rm {} \;
+        - find . -type f -name "*.css.map" -exec rm {} \;
         - |
           if [ -d _build ]
           then
