@@ -6,7 +6,7 @@ include:
 
 variables:
   VERSION_NUMBER:
-    value: "2.5.1"
+    value: "2.6.0"
     description: Version number used for the Docker image
   DOCKER_IMAGE_NAME:
     value: "rse/docker/images/sphinx-doc"

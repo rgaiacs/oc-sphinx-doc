@@ -17,7 +17,7 @@ spec:
 
 $[[ inputs.job-name ]]:
     stage: $[[ inputs.stage ]]
-    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.5.1
+    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.6.0
     script:
         - |
           if [ "$[[ inputs.install_repo ]]" = "true" ]
