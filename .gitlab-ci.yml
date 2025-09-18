@@ -6,13 +6,4 @@ workflow:
 
 include:
   - component: $CI_SERVER_FQDN/rse/ci-cd-catalog/oc2gesis/oc2gesis@1.0.0
-
-create release:
-  stage: deploy
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
-  script: echo "Creating release $CI_COMMIT_TAG"
-  rules:
-    - if: $CI_COMMIT_TAG
-  release:
-    tag_name: $CI_COMMIT_TAG
-    description: "Release $CI_COMMIT_TAG of GitLab CI/CD component 'oc2gesis'"
+  - component: $CI_SERVER_FQDN/rse/ci-cd-catalog/release/release@1.0.0
