@@ -6,4 +6,6 @@ We follow [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
 Version `1.MINOR.PATCH` refers to https://git.gesis.org/docker/images/sphinx-doc.
 
-Version `2.MINOR.PATHC` referst to https://git.gesis.org/rse/docker/images/sphinx-doc and creation of [GitLab CI/CD Component](https://docs.gitlab.com/ee/ci/components/) for [GitLab CI/CD Catalog](https://docs.gitlab.com/ee/ci/components/#cicd-catalog).
+Version `2.MINOR.PATCH` refers to https://git.gesis.org/rse/docker/images/sphinx-doc and creation of [GitLab CI/CD Component](https://docs.gitlab.com/ee/ci/components/) for [GitLab CI/CD Catalog](https://docs.gitlab.com/ee/ci/components/#cicd-catalog).
+
+Version `3.MINOR.PATCH` refers to https://git.gesis.org/rse/oc/sphinx-doc and https://git.gesis.org/rse/ci-cd-catalog/sphinx-doc.

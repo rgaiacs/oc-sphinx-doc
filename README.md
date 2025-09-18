@@ -1,115 +1,73 @@
 # Sphinx
 
-GitLab CI/CD Component to build documentation website with Sphinx.
+Container image to build documentation website with [Sphinx](https://www.sphinx-doc.org/).
+
+## Extensions included
+
+- [myst-parser](https://myst-parser.readthedocs.io/)
+- [sphinx-autobuild](https://pypi.org/project/sphinx-autobuild/)
+- [sphinx-copybutton](https://pypi.org/project/sphinx-copybutton/)
+- [sphinx-tabs](https://pypi.org/project/sphinx-tabs/)
+- [sphinxcontrib-mermaid](https://pypi.org/project/sphinxcontrib-mermaid/)
+- [sphinxcontrib-video](https://pypi.org/project/sphinxcontrib-video/)
+- [sphinxcontrib-openapi](https://pypi.org/project/sphinxcontrib-openapi/)
+- [sphinxcontrib-programoutput](https://pypi.org/project/sphinxcontrib-programoutput/)
+
+## Themes included
+
+- [GESIS](https://git.gesis.org/rse/gesis-sphinx-theme)
+- [Read the Docs](https://sphinx-rtd-theme.readthedocs.io/en/stable/)
+- [Material Design](https://pypi.org/project/sphinx-md-theme/)
+
+## Auxiliar applications
+
+- Git
+- GNU Make
 
 ## Usage
 
-Add
-
-```yaml
-include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.6.0
-    inputs:
-      stage: build
-      dir: docs
-```
-
-to your `.gitlab-ci.yml`.
-
-To have the documentation published using GitLab Pages, add
-
-```yaml
-pages:
-  stage: .post
-  dependencies:
-    - build sphinx website
-  script:
-    - echo Publish documentation to GitLab Pages
-  artifacts:
-    paths:
-      - public
-```
-
-to your `.gitlab-ci.yml`.
-
-### `autodoc`
-
-Use of [Sphinx built-in extensions `autodoc`](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html) is supported.
-
-```yaml
-include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.6.0
-    inputs:
-      stage: build
-      dir: docs
-      install_repo: true
-```
-
-### Conditional
-
-It is possible to define conditions to when the component will be executed.
-For example,
-
-```yaml
-include:
-  - component: $CI_SERVER_FQDN/rse/docker/images/sphinx-doc/sphinx-doc@2.6.0
-    inputs:
-      stage: build
-      dir: docs
-    rules:
-      - if: $CI_COMMIT_BRANCH == "master"
-
-pages:
-  stage: .post
-  rules:
-    - if: $CI_COMMIT_BRANCH == "master"
-  dependencies:
-    - build sphinx website
-  script:
-    - echo Publish documentation to GitLab Pages
-  artifacts:
-    paths:
-      - public
-```
-
-## Local Usage
-
 ### Docker Compose
 
-Add
+1.  Add
 
-```
-services:
-  sphinx-doc:
-    image: docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.6.0
+    ```
+    services:
+      sphinx-doc:
+        image: docker-private.gesis.intra/rse/oc/sphinx-doc:3.0.0
+        volumes:
+          - type: bind
+            source: docs
+            target: /mnt/docs
+            read_only: true
+          - sphinx-doc-build:/mnt/html
+        expose:
+          - "8000"
+        ports:
+          - "8000:8000"
+        command: sphinx-autobuild --host 0.0.0.0 /mnt/docs/source /mnt/html
+
     volumes:
-      - type: bind
-        source: docs
-        target: /mnt/docs
-        read_only: true
-      # Create volume to avoid the container overwrite build
-      - sphinx-doc-build:/mnt/html
-    expose:
-      - "8000"
-    ports:
-      - "8000:8000"
-    command: sphinx-autobuild --host 0.0.0.0 /mnt/docs/source /mnt/html
+      sphinx-doc-build:
+    ```
 
-volumes:
-  sphinx-doc-build:
-```
+    to your `compose.yml`.
+    
+2. Run
 
-to your `compose.yml`
+    ```bash
+    docker compose up
+    ```
 
-### Docker
+3. Open http://localhost:8080 with your web browser.
 
-```bash
-cd /path/to/your/sphinx-doc-project
-```
+### Docker CLI
 
-```bash
-docker run -ti --rm \
-  -v $PWD:/mnt \
-  docker-private.gesis.intra/rse/docker/images/sphinx-doc:2.6.0 \
-  bash -c "cd /mnt && make html"
-```
+1.  Run
+
+    ```bash
+    docker run -ti --rm \
+      -v $PWD/docs:/mnt/docs \
+      docker-private.gesis.intra/rse/oc/sphinx-doc:3.0.0 \
+      sh -c "sphinx-autobuild --host 0.0.0.0 /mnt/docs/source /mnt/html"
+    ```
+2. Open http://localhost:8080 with your web browser.
