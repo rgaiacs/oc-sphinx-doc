@@ -5,5 +5,5 @@ workflow:
     - if: $CI_MERGE_REQUEST_ID
 
 include:
-  - component: $CI_SERVER_FQDN/rse/ci-cd-catalog/oc2gesis/oc2gesis@1.0.0
+  - component: $CI_SERVER_FQDN/rse/ci-cd-catalog/oc2gesis/oc2gesis@1.2.0
   - component: $CI_SERVER_FQDN/rse/ci-cd-catalog/release/release@1.0.0
