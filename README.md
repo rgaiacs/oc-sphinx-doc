@@ -1,7 +1,7 @@
 # Sphinx
 
- [![Latest Release](https://git.gesis.org/rse/oc/sphinx-doc/-/badges/release.svg)](https://git.gesis.org/rse/oc/sphinx-doc/-/releases) 
-  [![pipeline status](https://git.gesis.org/rse/oc/sphinx-doc/badges/main/pipeline.svg)](https://git.gesis.org/rse/oc/sphinx-doc/-/commits/main) 
+[![Latest Release](https://git.gesis.org/rse/oc/sphinx-doc/-/badges/release.svg)](https://git.gesis.org/rse/oc/sphinx-doc/-/releases) 
+[![pipeline status](https://git.gesis.org/rse/oc/sphinx-doc/badges/main/pipeline.svg)](https://git.gesis.org/rse/oc/sphinx-doc/-/commits/main) 
 
 Container image to build documentation website with [Sphinx](https://www.sphinx-doc.org/).
 
