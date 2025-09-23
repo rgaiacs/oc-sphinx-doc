@@ -36,7 +36,7 @@ Container image to build documentation website with [Sphinx](https://www.sphinx-
     ```
     services:
       sphinx-doc:
-        image: docker-private.gesis.intra/rse/oc/sphinx-doc:3.0.0
+        image: docker-private.gesis.intra/rse/oc/sphinx-doc:3.1.0
         volumes:
           - type: bind
             source: docs
@@ -70,7 +70,7 @@ Container image to build documentation website with [Sphinx](https://www.sphinx-
     ```bash
     docker run -ti --rm \
       -v $PWD/docs:/mnt/docs \
-      docker-private.gesis.intra/rse/oc/sphinx-doc:3.0.0 \
+      docker-private.gesis.intra/rse/oc/sphinx-doc:3.1.0 \
       sh -c "sphinx-autobuild --host 0.0.0.0 /mnt/docs/source /mnt/html"
     ```
 2. Open http://localhost:8080 with your web browser.
