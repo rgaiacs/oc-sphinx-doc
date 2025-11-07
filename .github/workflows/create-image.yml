@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: sphinx-doc
+  IMAGE_NAME: ${{ github.repository_owner }}/sphinx-doc
 
 jobs:
   build-and-push-image:
