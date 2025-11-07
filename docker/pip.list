@@ -1,4 +1,3 @@
-gesis-sphinx-theme==1.3.0 --index-url https://git.gesis.org/api/v4/projects/3316/packages/pypi/simple
 myst-parser==4.0.1
 sphinx_md_theme==0.1a4
 sphinx-autobuild==2025.8.25
